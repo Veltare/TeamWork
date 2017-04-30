@@ -6,16 +6,20 @@
 #include <fstream>
 #include <string>
 #include <iomanip>
+#include <algorithm>
 
+void create_crossword(string words);
+void preparation_words(string words[]);
+char double_massive[50][50];
 using namespace std;
 int main()
 {
 	setlocale(LC_ALL, "Russian");
 	ifstream issues("Issues.txt");
 	ifstream answers("Answers.txt");
-    string word[10];
-    string issues_mass;
-
+	string words[10];
+	string issues_mass;
+	string buffer_mass;
 	if (!issues.is_open()) // если файл не был открыт
 	{
 		cout << "Файл не может быть открыт или создан\n"; // напечатать соответствующее сообщение
@@ -33,8 +37,8 @@ int main()
 		if (i < 10)
 		{
 
-			answers >> word[i];
-			cout << word[i] << endl;
+			answers >> words[i];
+			cout << words[i] << endl;
 			i++;
 
 		}
@@ -50,6 +54,7 @@ int main()
 	
 		
 			cout << issues_mass<<endl;
+			buffer_mass += issues_mass;
 			z++;
 		
 	}
@@ -58,3 +63,12 @@ int main()
     return 0;
 }
 
+ 
+void create_crossword(string words)
+{
+
+}
+void preparation_words(string words[])
+{
+	sort(words.begin(),);
+}
