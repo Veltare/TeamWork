@@ -35,7 +35,7 @@
     <ClCompile Include="CrosswordGenerator.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="CrosswordGeneratorLAUNCH.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>

@@ -9,4 +9,4 @@
 using namespace std;
 //Описание функции в которой мы будем использовать CrosswordGenerator.h
 
-string SharedLetters(string s1, string s2);
+string sharedLetters(string s1, string s2);
