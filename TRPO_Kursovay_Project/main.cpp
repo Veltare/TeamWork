@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include "CrosswordGenerator.h"
+#include "RenderingCrossword.h"
 #include <clocale>
 
 using namespace std;
@@ -12,7 +13,7 @@ using namespace std;
 int main()
 {
 	//Количетсво слов в базе 
-	const int size = 53;
+	const int size = 10;
 
 	setlocale(LC_ALL,"Russian");
 
@@ -23,14 +24,14 @@ int main()
 	string words[size];
 
 	//Создание динамического вектора для записи общих букв
-	vector<vector<string>> crossword;
+	vector<vector<char>> location;
+	//..............................
+	vector<vector<char>> puzzle;
+	vector<vector<char>> solution;
 
-	crossword.resize(size);
-	//Расширение динамического вектора
-	for (int z = 0; z < size; z++)
-	{
-		crossword[z].resize(size);
-	}
+	
+
+	
 
 	//Заполнение массива строк базой слов 
 	string line;
@@ -59,7 +60,32 @@ int main()
 		}
 
 	}
+	int wordlength = words[0].length();
+
+	location.resize(size);
+	solution.resize(wordlength);
+	puzzle.resize(wordlength);
+	//Расширение динамического вектора
+	for (int z = 0; z < 3; z++)
+	{
+		location[z].resize(size);
+	}
+	for (int z = 0; z < wordlength; z++)
+	{
+		solution[z].resize(wordlength);
+	}
+	for (int z = 0; z < wordlength; z++)
+	{
+		puzzle[z].resize(wordlength);
+	}
+
+	initilizeBoard(puzzle, '#', wordlength);
+	initilizeBoard(solution, '.', wordlength);
+
+	puzzleMaker(words,solution,size,location, wordlength); //Постройка пазла,вызов других функций
+
 	//Получение,запись и вывод общих букв
+	/*
 	for (int i = 0; i < size; i++)
 	{
 		for (int comparisonIndex = i + 1; comparisonIndex < size; comparisonIndex++)
@@ -70,7 +96,8 @@ int main()
 
 			cout << result << endl;
 		}
-	}
+	*/
+
 
 	system("pause");
 }
