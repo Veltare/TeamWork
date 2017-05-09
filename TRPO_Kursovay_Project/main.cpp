@@ -12,8 +12,8 @@ using namespace std;
 
 int main()
 {
-	//Количетсво слов в базе 
-	const int size = 10;
+	//Количество слов в базе 
+	const int size = 52;
 
 	setlocale(LC_ALL,"Russian");
 
@@ -22,16 +22,6 @@ int main()
 	wordList.open("WordBase.txt");
 
 	string words[size];
-
-	//Создание динамического вектора для записи общих букв
-	vector<vector<char>> location;
-	//..............................
-	vector<vector<char>> puzzle;
-	vector<vector<char>> solution;
-
-	
-
-	
 
 	//Заполнение массива строк базой слов 
 	string line;
@@ -62,28 +52,23 @@ int main()
 	}
 	int wordlength = words[0].length();
 
-	location.resize(size);
-	solution.resize(wordlength);
-	puzzle.resize(wordlength);
 	//Расширение динамического вектора
-	for (int z = 0; z < 3; z++)
-	{
-		location[z].resize(size);
-	}
-	for (int z = 0; z < wordlength; z++)
-	{
-		solution[z].resize(wordlength);
-	}
-	for (int z = 0; z < wordlength; z++)
-	{
-		puzzle[z].resize(wordlength);
-	}
+	int wordcount, i, j;
+	char puzzle[100][100], solution[100][100];
 
-	initilizeBoard(puzzle, '#', wordlength);
-	initilizeBoard(solution, '.', wordlength);
+	initilizeBoard(puzzle, '#');
+	initilizeBoard(solution, '.');
 
-	puzzleMaker(words,solution,size,location, wordlength); //Постройка пазла,вызов других функций
 
+	printf("\n");
+
+	int location[52][3];
+
+
+	puzzleMaker(words, solution, size, location);
+
+	displayBoards(puzzle, solution, location, size, words);
+	//displayBoards(puzzle, solution, location, size, words, wordlength);
 	//Получение,запись и вывод общих букв
 	/*
 	for (int i = 0; i < size; i++)
