@@ -10,7 +10,7 @@
 
 #include "CrosswordGenerator.h"
 
-#define _GNU_SOURCE
+
 #define PLACE_SUCCESS 1;
 #define PLACE_FAILURE 0;
 
@@ -54,7 +54,7 @@ void puzzleMaker(string words[], char solution[][100], int wordcount, int locati
 	location[0][0] = (100 - words[0].length()) / 2;
 	location[0][1] = 5;
 	location[0][2] = 1;
-	// printf("%d\n",value );
+	
 
 	for (i = 1; i < wordcount; i++) {
 		if (!placeFinder(words, solution, i, location)) location[i][0] = -1; 

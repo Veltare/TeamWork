@@ -53,7 +53,7 @@ int main()
 	int wordlength = words[0].length();
 
 	//Расширение динамического вектора
-	int wordcount, i, j;
+	int i, j;
 	char puzzle[100][100], solution[100][100];
 
 	initilizeBoard(puzzle, '#');
