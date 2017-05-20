@@ -9,19 +9,29 @@
 #include <clocale>
 
 using namespace std;
+struct base
+{
+	string word;
+	string questions;
+	int orintation;
+	int x, y;
+	int number;
+
+};
 
 int main()
 {
 	//Количество слов в базе 
 	const int size = 52;
 
-	setlocale(LC_ALL,"Russian");
+	setlocale(LC_ALL, "Russian");
 
 	//Считывание базы слов
 	ifstream wordList;
 	wordList.open("WordBase.txt");
 
 	string words[size];
+	string questions[size];
 
 	//Заполнение массива строк базой слов 
 	string line;
@@ -33,6 +43,29 @@ int main()
 	}
 
 	wordList.close();
+
+
+
+	//Считывание базы вопросов
+	ifstream QuestionsList;
+	QuestionsList.open("Issues.txt");
+	count = 0;
+	while (getline(QuestionsList, line))
+	{
+		questions[count] = line;
+
+		count++;
+	}
+	//Запись в список слов
+	base basic_lib[size];
+	for (int i = 0; i < size; i++)
+	{
+		basic_lib[i].word = words[i];
+		basic_lib[i].questions = questions[i];
+	}
+
+	QuestionsList.close();
+	//Перепись в массив структур
 
 	//Сортировка слов по длинне
 	for (int i = 0; i < size; i++)
@@ -54,35 +87,61 @@ int main()
 
 	//Расширение динамического вектора
 	int i, j;
-	char puzzle[100][100], solution[100][100];
+	char puzzle[100][100], solution[100][100], NewBoard[100][200];
 
 	initilizeBoard(puzzle, '#');
+	initilizeBoard(NewBoard, '#');
 	initilizeBoard(solution, '.');
+
 
 
 	printf("\n");
 
 	int location[52][3];
 
-
+	
 	puzzleMaker(words, solution, size, location);
+	displayBoards(NewBoard, solution, location, size, words, basic_lib);
+	displayQuestions(questions, size);
 
-	displayBoards(puzzle, solution, location, size, words);
-	//displayBoards(puzzle, solution, location, size, words, wordlength);
-	//Получение,запись и вывод общих букв
-	/*
-	for (int i = 0; i < size; i++)
+	int b(0);
+	cout << "По какой плоскости решать?" << endl;
+
+	while (true)
 	{
-		for (int comparisonIndex = i + 1; comparisonIndex < size; comparisonIndex++)
-
+		cin >> b;
+		switch (b)
 		{
-			string result = sharedLetters(words[i],words[comparisonIndex]);
-			crossword[i][comparisonIndex] = result;
+		case 1:
+		{
+			if (location[0][2] == 0)
+			{
+				cout << "ВОПРОСЫ" << endl << endl;
+				int count(0);
+				while (count != size)
+				{
+					cout << "  " << count << " " << basic_lib[count].questions << endl;
+					cout << "  " << "Координаты:";
+					//cout << arg[count++] << endl;
+					cout << "--------------------------------------------------------------------------------------------" << endl;
+				}
+				break;
+			}
 
-			cout << result << endl;
 		}
-	*/
+		case 0:
+		{
+			break;
+		}
+		default:
+		{
+			cout << "Некорректный ввод" << endl;
+		}
+		}
 
 
+
+		
+	}
 	system("pause");
 }
