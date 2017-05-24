@@ -263,7 +263,85 @@ void displayQuestions(string arg[],int size)
 	}
 }
 
+int MainManu(int size, struct base basic_base[], char board[][200])
+{
+	
 
+	string argument;
+	
+	int number;
+	
+	while (true)
+	{
+		cout << endl;
+		system("cls");
+		DisplayBoards(board);
+		cout << "Введите плоскость 1 - Горизонталь / 0 - Вертикаль" << endl;
+		cin>>argument;
+		if (argument == "1")
+		{
+			cout << "Введите номер поля для ответа" << endl;
+			cin >> number;
+			for (int z = 0; z < size; z++)
+			{
+				if (number == basic_base[z].number && basic_base[z].orintation == 1)
+				{
+					cout <<" . "<< z <<"."<<  basic_base[z].questions << endl;
+					cout << " . " << z << "." << basic_base[z].word << endl;
+					cout << "Введите ответ" << endl;
+					cin >> argument;
+					cout << argument;
+					if (argument == basic_base[z].word)
+					{
+				
+						basic_base[z].orintation = InputInCrossword(board, basic_base[z].x, basic_base[z].y, argument, basic_base[z].orintation);
+						if (VictoryCondition(basic_base, size) == -1)
+						{
+							cout << "Игра окончена" << endl;
+							return 0;
+						}
+							
+					}
+				}
+				else continue;
+			}
+				
+		}
+		
+
+		if (argument == "0")
+		{
+			cout << "Введите номер поля для ответа" << endl;
+			cin >> number;
+			for (int z = 0; z < size; z++)
+			{
+				if (number == basic_base[z].number && basic_base[z].orintation == 0)
+				{
+					cout << " . " << z << "." << basic_base[z].questions << endl;
+					cout << " . " << z << "." << basic_base[z].word << endl;
+					cout << "Введите ответ" << endl;
+					cin >> argument;
+					cout << argument;
+					if (argument == basic_base[z].word)
+					{
+						InputInCrossword(board, basic_base[z].x, basic_base[z].y, argument, basic_base[z].orintation);
+
+					}
+				}
+				else continue;
+			}
+		}
+		
+
+		if (argument == "Выход")
+		{
+			system("cls");
+			return 0;
+		}
+
+	}
+		
+}
 
 int InputInCrossword(char board[][200], int x, int y,string word,int orintation)
 {
