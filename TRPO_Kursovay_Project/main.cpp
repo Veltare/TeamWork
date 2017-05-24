@@ -7,6 +7,7 @@
 #include "CrosswordGenerator.h"
 #include "RenderingCrossword.h"
 #include <clocale>
+#include <windows.h>
 
 using namespace std;
 struct base
@@ -25,6 +26,8 @@ int main()
 	const int size = 52;
 
 	setlocale(LC_ALL, "Russian");
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
 
 	//Считывание базы слов
 	ifstream wordList;
@@ -101,47 +104,8 @@ int main()
 
 	
 	puzzleMaker(words, solution, size, location);
-	displayBoards(NewBoard, solution, location, size, words, basic_lib);
-	displayQuestions(questions, size);
-
-	int b(0);
-	cout << "По какой плоскости решать?" << endl;
-
-	while (true)
-	{
-		cin >> b;
-		switch (b)
-		{
-		case 1:
-		{
-			if (location[0][2] == 0)
-			{
-				cout << "ВОПРОСЫ" << endl << endl;
-				int count(0);
-				while (count != size)
-				{
-					cout << "  " << count << " " << basic_lib[count].questions << endl;
-					cout << "  " << "Координаты:";
-					//cout << arg[count++] << endl;
-					cout << "--------------------------------------------------------------------------------------------" << endl;
-				}
-				break;
-			}
-
-		}
-		case 0:
-		{
-			break;
-		}
-		default:
-		{
-			cout << "Некорректный ввод" << endl;
-		}
-		}
-
-
-
-		
-	}
+	CreateBoards(NewBoard, solution, location, size, words, basic_lib);
+	MainManu(size, basic_lib, NewBoard);
+	
 	system("pause");
 }

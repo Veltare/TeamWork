@@ -160,3 +160,4 @@ int wordPlace(string words, char solution[][100], int y, int x, int orientation)
 
 	return PLACE_SUCCESS;
 }
+
