@@ -105,6 +105,7 @@ int main()
 	
 	puzzleMaker(words, solution, size, location);
 	CreateBoards(NewBoard, solution, location, size, words, basic_lib);
+
 	MainManu(size, basic_lib, NewBoard);
 	
 	system("pause");
