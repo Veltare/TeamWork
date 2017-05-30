@@ -46,7 +46,7 @@ string sharedLetters(string s1,string s2)
 }
 
 
-void puzzleMaker(string words[], char solution[][100], int wordcount, int location[][3])
+void puzzleMaker(string words[], char solution[][100], int wordcount, int **location)
 {
 
 	int value, i;        
@@ -63,7 +63,7 @@ void puzzleMaker(string words[], char solution[][100], int wordcount, int locati
 	}
 }
 
-int placeFinder(string words[], char solution[][100], int wordnumber, int location[][3]) {
+int placeFinder(string words[], char solution[][100], int wordnumber, int **location) {
 	int value, i, j, k;
 
 	for (i = 0; i <= words[wordnumber].length(); i++) { 

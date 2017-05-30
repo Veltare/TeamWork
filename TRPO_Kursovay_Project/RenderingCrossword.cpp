@@ -47,15 +47,10 @@ void initilizeBoard(char board[][200], char c) {
 
 	return;
 }
-void display(char sayings[][102], int size) { 
-	int i = 0;
-	for (i = 0; i<(size); i++) {
-		printf("%s\n", sayings[i]);
-	}
-}
 
-void CreateBoards(char board[][200], char solution[][100], int location[][3], int wordcount, string words[], struct base basic_base[])
- {
+
+void CreateBoards(char board[][200], char solution[][100], int **location, int wordcount, string words[], struct base *basic_base)
+{
 	int i, j,k(0);
 	for (i = 0; i <= 99; i++) {
 		for (j = 0; j <= 99; j++) {
@@ -263,7 +258,7 @@ void displayQuestions(string arg[],int size)
 	}
 }
 
-int MainManu(int size, struct base basic_base[], char board[][200])
+int MainManu(int size, struct base *basic_base, char board[][200])
 {
 
 
@@ -414,7 +409,8 @@ void DisplayBoards(char board[][200])
 	for (int i = 0; i <= 40; i++)
 		cout << " " << i;
 	cout << endl;
-	for (int i = 0; i <= 60; i++) {
+	for (int i = 0; i <= 90; i++) 
+	{
 		if (i<10)
 			cout << "  " << i << " ";
 		else
@@ -427,7 +423,8 @@ void DisplayBoards(char board[][200])
 	}
 }
 
-int VictoryCondition(struct base basic_base[], int size)
+int VictoryCondition(struct base *basic_base, int size)
+
 {
 	int counter_positive(0);
 	for (int count = 0; count < size; count++)
