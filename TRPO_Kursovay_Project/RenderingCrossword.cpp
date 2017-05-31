@@ -8,8 +8,9 @@
 #include <cctype>
 #include <stdlib.h>
 #include <sstream>
-
 #include "RenderingCrossword.h"
+#include "Logic.h"
+
 
 struct base
 {
@@ -46,19 +47,14 @@ void initilizeBoard(char board[][200], char c) {
 
 	return;
 }
-void display(char sayings[][102], int size) { 
-	int i = 0;
-	for (i = 0; i<(size); i++) {
-		printf("%s\n", sayings[i]);
-	}
-}
 
-void displayBoards(char board[][200], char solution[][100], int location[][3], int wordcount, string words[], struct base basic_base[])
- {
+
+void CreateBoards(char board[][200], char solution[][100], int **location, int wordcount, string words[], struct base *basic_base)
+{
 	int i, j,k(0);
 	for (i = 0; i <= 99; i++) {
 		for (j = 0; j <= 99; j++) {
-			cout << solution[i][j];
+			
 			if (isalpha((unsigned char)solution[i][j]))
 			{
 
@@ -72,7 +68,7 @@ void displayBoards(char board[][200], char solution[][100], int location[][3], i
 		k = 0;
 		cout << endl;
 	}
-	//Заполнение пазла цифрами(Вертикаль)
+	//Заполнение пазла цифрами
 	int count_number(1), cif1(1), cif2(0);
 	for (i = 0; i < wordcount; i++) {
 
@@ -87,7 +83,7 @@ void displayBoards(char board[][200], char solution[][100], int location[][3], i
 				{
 					board[location[i][1]][location[i][0] * 2 + 1] = count_number + 48;
 
-					cout << count_number;
+				
 					count_number++;
 				}
 				else
@@ -102,6 +98,8 @@ void displayBoards(char board[][200], char solution[][100], int location[][3], i
 					{
 						cif1++;
 						cif2 = 0;
+						board[location[i][1]][location[i][0] * 2] = cif1 + 48;
+						board[location[i][1]][location[i][0] * 2 + 1] = (cif2++) + 48;
 
 					}
 				}
@@ -119,7 +117,7 @@ void displayBoards(char board[][200], char solution[][100], int location[][3], i
 				{
 					board[location[i][1]][location[i][0] * 2 + 1] = count_number + 48;
 
-					cout << count_number;
+					
 					count_number++;
 				}
 				else
@@ -133,7 +131,8 @@ void displayBoards(char board[][200], char solution[][100], int location[][3], i
 					{
 						cif1++;
 						cif2 = 0;
-
+						board[location[i][1]][location[i][0] * 2] = cif1 + 48;
+						board[location[i][1]][location[i][0] * 2 + 1] = (cif2++) + 48;
 					}
 				}
 
@@ -141,13 +140,13 @@ void displayBoards(char board[][200], char solution[][100], int location[][3], i
 			}
 			else 
 			{
-				cout << "x :" << location[i][1] << "  y :" << location[i][0] << endl;
-				cout << "Промах!" << endl;
 				continue;
 			}
 			}
 			
 	}
+
+
 	//Заполнение базы координатами
 	for (i = 0; i < wordcount; i++)
 	{
@@ -160,26 +159,24 @@ void displayBoards(char board[][200], char solution[][100], int location[][3], i
 			{
 				if (words[i] == basic_base[z].word)
 				{
-					cout << endl;
-					cout << words[i] << endl;
+					
 
 					basic_base[z].orintation = location[i][2];
-					cout << basic_base[z].orintation << endl;
 					basic_base[z].x = location[i][0]*2;
 					basic_base[z].y = location[i][1];
-					cout <<"x :"<< basic_base[z].x << "  y :"<< basic_base[z].y<< endl;
+	
 					
 					if ((board[location[i][1]][location[i][0] * 2] == ' '))
 						{
 						if (board[location[i][1]][location[i][0] * 2 + 1] != ' ')
 						{
 							basic_base[z].number = board[location[i][1]][location[i][0] * 2 + 1] - 48;
-							cout << board[location[i][1]][location[i][0] * 2 + 1] - 48 << endl;
+							
 						}
 						if (board[location[i][1]][location[i][0] * 2 + 1] == ' ')
 						{
 							basic_base[z].number = board[location[i][1]][location[i][0] * 2 + 1] - 48;
-							cout << board[location[i][1]][location[i][0] * 2 + 1] - 48 << endl;
+							
 						}
 							
 
@@ -189,7 +186,6 @@ void displayBoards(char board[][200], char solution[][100], int location[][3], i
 					else
 					{
 						basic_base[z].number = (board[location[i][1]][location[i][0] * 2] - 48)*10 + (board[location[i][1]][location[i][0] * 2+1] - 48);
-						cout << basic_base[z].number << endl;
 
 					}
 					
@@ -207,18 +203,13 @@ void displayBoards(char board[][200], char solution[][100], int location[][3], i
 			{
 				if (words[i] == basic_base[z].word)
 				{
-					cout << endl;
-					cout << words[i] << endl;
-
+					
 					basic_base[z].orintation = location[i][2];
-					cout << basic_base[z].orintation << endl;
 					basic_base[z].x = location[i][0] * 2;
 					basic_base[z].y = location[i][1];
-					cout << "x :" << basic_base[z].x << "  y :" << basic_base[z].y << endl;
 					if ((board[location[i][1]][location[i][0] * 2] == ' '))
 					{
 						basic_base[z].number = board[location[i][1]][location[i][0] * 2 + 1] - 48;
-						cout << board[location[i][1]][location[i][0] * 2 + 1] - 48 << endl;
 
 
 					}
@@ -227,7 +218,6 @@ void displayBoards(char board[][200], char solution[][100], int location[][3], i
 					else
 					{
 						basic_base[z].number = (board[location[i][1]][location[i][0] * 2] - 48) * 10 + (board[location[i][1]][location[i][0] * 2 + 1] - 48);
-						cout << basic_base[z].number << endl;
 
 					}
 
@@ -238,51 +228,9 @@ void displayBoards(char board[][200], char solution[][100], int location[][3], i
 
 		}
 	}
-
-	printf("\nКроссворд Пазл:\n\n");
-	cout << endl;
-	cout << "    ";
-	for (i = 0; i <= 40; i++)
-		cout << " " << i;
-	cout << endl;
-	for (i = 0; i <= 40; i++) {
-		if(i<10)
-		cout << "  " << i << " ";
-		else
-			cout << " " << i << " ";
-		for (j = 60; j <= 169; j++) {
-			printf("%c", board[i][j]);
-
-		}
-		printf("\n");
-	}
-	
-		cout<<" "<<"Положение:"<<endl;
-		cout << "По вертикале" << endl;
-		cout << endl;
-	for (i = 0; i<wordcount; i++) {
-		if (location[i][0] == -1) continue; 
-
-		if (location[i][2] == 0) {
-			cout << location[i][0] << " " << location[i][1] << " " << words[i] << endl;
-			
-		}
-		}
-	cout << "*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-" << endl;
-		cout << "По горизонтале" << endl;
-		cout << endl;
-		for (i = 0; i<wordcount; i++) {
-			if (location[i][0] == -1) continue;
-
-			if (location[i][2] == 1) {
-				cout << location[i][0] << " " << location[i][1] << " " << words[i] << endl;
-		
-			}
-		
 		
 	}
 		
-}
 
 void InputAnswer()
 {
@@ -310,16 +258,192 @@ void displayQuestions(string arg[],int size)
 	}
 }
 
-void ExpansionMass(char board[][100], char NewBoard[][200])
+int MainManu(int size, struct base *basic_base, char board[][200])
 {
-	int k(0);
-	for(int i=0; i<100; i++)
-		for (int j = 0; j < 100,k < 200; j++)
+
+
+	string argument;
+
+	int number(0);
+
+	while (true)
+	{
+		cout << endl;
+		system("cls");
+		DisplayBoards(board);
+		cout << "Введите плоскость 1 - Горизонталь / 0 - Вертикаль" << endl;
+		cin >> argument;
+		
+		if (argument == "1")
 		{
-			NewBoard[i][k] = board[i][j];
-			NewBoard[i][k+1] = board[i][j];
-			k += 2;
+
+			cout << "Введите номер поля для ответа" << endl;
+			
+			number = vvod();
+			if (argument == "Выход")
+			{
+				system("cls");
+				continue;
+			}
+				for (int z = 0; z < size; z++)
+				{
+					if (number == basic_base[z].number && basic_base[z].orintation == 1)
+					{
+						cout << " . " << z << "." << basic_base[z].questions << endl;
+						cout << " . " << z << "." << basic_base[z].word << endl;
+						cout << "Введите ответ" << endl;
+						cin >> argument;
+					
+						if (argument == basic_base[z].word)
+						{
+
+							basic_base[z].orintation = InputInCrossword(board, basic_base[z].x, basic_base[z].y, argument, basic_base[z].orintation);
+							if (VictoryCondition(basic_base, size) == -1)
+							{
+								cout << "Игра окончена" << endl;
+								return 0;
+							}
+
+						}
+					}
+
+				}
+				cout << "Некорректное значение поля " << endl;
+				
+
+				
+				
+			}
+		
+		if (argument == "0")
+		{
+
+			cout << "Введите номер поля для ответа" << endl;
+			
+			number = vvod();
+
+				for (int z = 0; z < size; z++)
+				{
+					if (number == basic_base[z].number && basic_base[z].orintation == 0)
+					{
+						cout << " . " << z << "." << basic_base[z].questions << endl;
+						cout << " . " << z << "." << basic_base[z].word << endl;
+						cout << "Введите ответ" << endl;
+						cin >> argument;
+						
+						if (argument == basic_base[z].word)
+						{
+
+							basic_base[z].orintation = InputInCrossword(board, basic_base[z].x, basic_base[z].y, argument, basic_base[z].orintation);
+							if (VictoryCondition(basic_base, size) == -1)
+							{
+								cout << "Игра окончена" << endl;
+								return 0;
+							}
+
+						}
+					}
+
+				}
+				if (argument == "Выход")
+				{
+					system("cls");
+					continue;
+				}
+				cout << "Ошибка ввода" << endl;
+				continue;
+				
+			
+		}
+
+			if (argument == "Выход")
+			{
+				system("cls");
+				return 0;
+			}
+			
+		
+		
 
 		}
 
 }
+
+
+int InputInCrossword(char board[][200], int x, int y,string word,int orintation)
+{
+	int count_x = x+1;
+	int count_y = y;
+	board[y][x] = ' ';
+	board[y][x+1] = ' ';
+
+	if (orintation == 1)
+	{
+		for (int count = 0; count < word.size(); count++)
+		{
+			board[y][count_x] = word[count];	
+			count_x+=2;
+		}
+		
+
+		return -1;
+	}
+	if (orintation == 0)
+	{
+		for (int count = 0; count < word.size(); count++)
+		{
+			board[count_y][x+1] = word[count];
+			count_y += 1;
+		}
+
+		return -1;
+	}
+	return 1;
+}
+
+void DisplayBoards(char board[][200])
+{
+	int x_min(0), x_max(0), y_min(0),y_max(0);
+	
+	SearchFieldsConclusion(board, x_min, x_max, y_min, y_max);
+	printf("\nКроссворд Пазл:\n\n");
+	cout << endl;
+	cout << "    ";
+	for (int i = 0; i <= y_max; i++)
+		cout << " " << i;
+	cout << endl;
+	for (int i = y_min-1; i <= y_max+1; i++) 
+	{
+		if (i<10)
+			cout << "  " << i << " ";
+		else
+			cout << " " << i << " ";
+		for (int j = x_min-1; j <= x_max+1; j++) {
+			printf("%c", board[i][j]);
+
+		}
+		printf("\n");
+	}
+}
+
+int VictoryCondition(struct base *basic_base, int size)
+
+{
+	int counter_positive(0);
+	for (int count = 0; count < size; count++)
+	{
+		if (basic_base[count].orintation == -1)
+		{
+			counter_positive++;
+			cout << counter_positive << endl;
+		}
+		
+
+		
+	}
+	if (counter_positive == size)
+		return -1;
+
+	return 0;
+}
+

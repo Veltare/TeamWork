@@ -7,6 +7,7 @@
 #include "CrosswordGenerator.h"
 #include "RenderingCrossword.h"
 #include <clocale>
+#include <windows.h>
 
 using namespace std;
 struct base
@@ -22,19 +23,29 @@ struct base
 int main()
 {
 	//Количество слов в базе 
-	const int size = 52;
 
 	setlocale(LC_ALL, "Russian");
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
 
 	//Считывание базы слов
 	ifstream wordList;
-	wordList.open("WordBase.txt");
+	wordList.open("WordBase10word.txt");
 
-	string words[size];
-	string questions[size];
+	string *words;
+	string *questions;
 
 	//Заполнение массива строк базой слов 
-	string line;
+	string line,buffer;
+	int size_list(0);
+	while (getline(wordList, buffer))
+	{
+		size_list++;
+	}
+	words = new string[size_list];
+	questions = new string[size_list];
+	wordList.close();
+	wordList.open("WordBase10word.txt");
 	int count = 0;
 	while (getline(wordList, line))
 	{
@@ -48,7 +59,7 @@ int main()
 
 	//Считывание базы вопросов
 	ifstream QuestionsList;
-	QuestionsList.open("Issues.txt");
+	QuestionsList.open("Issues10quiz.txt");
 	count = 0;
 	while (getline(QuestionsList, line))
 	{
@@ -57,8 +68,9 @@ int main()
 		count++;
 	}
 	//Запись в список слов
-	base basic_lib[size];
-	for (int i = 0; i < size; i++)
+	base *basic_lib;
+	basic_lib = new base[size_list];
+	for (int i = 0; i < size_list; i++)
 	{
 		basic_lib[i].word = words[i];
 		basic_lib[i].questions = questions[i];
@@ -68,9 +80,9 @@ int main()
 	//Перепись в массив структур
 
 	//Сортировка слов по длинне
-	for (int i = 0; i < size; i++)
+	for (int i = 0; i < size_list; i++)
 	{
-		for (int comparisonIndex = i + 1; comparisonIndex < size; comparisonIndex++)
+		for (int comparisonIndex = i + 1; comparisonIndex < size_list; comparisonIndex++)
 		{
 
 			if (words[i].length() < words[comparisonIndex].length())
@@ -86,7 +98,6 @@ int main()
 	int wordlength = words[0].length();
 
 	//Расширение динамического вектора
-	int i, j;
 	char puzzle[100][100], solution[100][100], NewBoard[100][200];
 
 	initilizeBoard(puzzle, '#');
@@ -97,51 +108,16 @@ int main()
 
 	printf("\n");
 
-	int location[52][3];
+	int **location;
+	location = new int*[size_list];
+	for (int i = 0; i < size_list; i++)
+		location[i] = new int[3];
 
 	
-	puzzleMaker(words, solution, size, location);
-	displayBoards(NewBoard, solution, location, size, words, basic_lib);
-	displayQuestions(questions, size);
+	puzzleMaker(words, solution, size_list, location);
+	CreateBoards(NewBoard, solution, location, size_list, words, basic_lib);
 
-	int b(0);
-	cout << "По какой плоскости решать?" << endl;
-
-	while (true)
-	{
-		cin >> b;
-		switch (b)
-		{
-		case 1:
-		{
-			if (location[0][2] == 0)
-			{
-				cout << "ВОПРОСЫ" << endl << endl;
-				int count(0);
-				while (count != size)
-				{
-					cout << "  " << count << " " << basic_lib[count].questions << endl;
-					cout << "  " << "Координаты:";
-					//cout << arg[count++] << endl;
-					cout << "--------------------------------------------------------------------------------------------" << endl;
-				}
-				break;
-			}
-
-		}
-		case 0:
-		{
-			break;
-		}
-		default:
-		{
-			cout << "Некорректный ввод" << endl;
-		}
-		}
-
-
-
-		
-	}
+	MainManu(size_list, basic_lib, NewBoard);
+	
 	system("pause");
 }
