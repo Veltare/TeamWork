@@ -403,19 +403,22 @@ int InputInCrossword(char board[][200], int x, int y,string word,int orintation)
 
 void DisplayBoards(char board[][200])
 {
+	int x_min(0), x_max(0), y_min(0),y_max(0);
+	
+	SearchFieldsConclusion(board, x_min, x_max, y_min, y_max);
 	printf("\nКроссворд Пазл:\n\n");
 	cout << endl;
 	cout << "    ";
-	for (int i = 0; i <= 40; i++)
+	for (int i = 0; i <= y_max; i++)
 		cout << " " << i;
 	cout << endl;
-	for (int i = 0; i <= 90; i++) 
+	for (int i = y_min-1; i <= y_max+1; i++) 
 	{
 		if (i<10)
 			cout << "  " << i << " ";
 		else
 			cout << " " << i << " ";
-		for (int j = 60; j <= 169; j++) {
+		for (int j = x_min-1; j <= x_max+1; j++) {
 			printf("%c", board[i][j]);
 
 		}

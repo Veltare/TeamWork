@@ -46,7 +46,6 @@ int main()
 	questions = new string[size_list];
 	wordList.close();
 	wordList.open("WordBase10word.txt");
-	cout << size_list << endl;
 	int count = 0;
 	while (getline(wordList, line))
 	{
