@@ -1,7 +1,13 @@
+<<<<<<< HEAD
 ﻿  RenderingCrossword.cpp
 c:\users\notebookaristokrata\documents\visual studio 2015\projects\laboration\trpo_kursovay_project\trpo_kursovay_project\renderingcrossword.cpp(395): warning C4018: <: несоответствие типов со знаком и без знака
 c:\users\notebookaristokrata\documents\visual studio 2015\projects\laboration\trpo_kursovay_project\trpo_kursovay_project\renderingcrossword.cpp(406): warning C4018: <: несоответствие типов со знаком и без знака
   Logic.cpp
   Создание кода...
+||||||| merged common ancestors
+﻿  main.cpp
+=======
+﻿  Logic.cpp
+>>>>>>> 295ead2851cf59d27d7af4d7d4f26a09647e30fe
   TRPO_Kursovay_Project.vcxproj -> C:\Users\NotebookAristokrata\Documents\Visual Studio 2015\Projects\Laboration\TRPO_Kursovay_Project\Debug\TRPO_Kursovay_Project.exe
   TRPO_Kursovay_Project.vcxproj -> C:\Users\NotebookAristokrata\Documents\Visual Studio 2015\Projects\Laboration\TRPO_Kursovay_Project\Debug\TRPO_Kursovay_Project.pdb (Partial PDB)
