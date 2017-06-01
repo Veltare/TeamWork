@@ -1,0 +1,17 @@
+﻿  Experemental.cpp
+c:\users\notebookaristokrata\documents\visual studio 2015\projects\laboration\trpo_kursovay_project\experemental\experemental.cpp(31): warning C4101: j: неиспользованная локальная переменная
+c:\users\notebookaristokrata\documents\visual studio 2015\projects\laboration\trpo_kursovay_project\experemental\experemental.cpp(31): warning C4101: i: неиспользованная локальная переменная
+c:\users\notebookaristokrata\documents\visual studio 2015\projects\laboration\trpo_kursovay_project\experemental\experemental.cpp(76): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\string.h(439): note:  см. объявление "strtok"
+c:\users\notebookaristokrata\documents\visual studio 2015\projects\laboration\trpo_kursovay_project\experemental\experemental.cpp(115): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\string.h(136): note:  см. объявление "strcpy"
+c:\users\notebookaristokrata\documents\visual studio 2015\projects\laboration\trpo_kursovay_project\experemental\experemental.cpp(116): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\string.h(136): note:  см. объявление "strcpy"
+c:\users\notebookaristokrata\documents\visual studio 2015\projects\laboration\trpo_kursovay_project\experemental\experemental.cpp(117): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\string.h(136): note:  см. объявление "strcpy"
+c:\users\notebookaristokrata\documents\visual studio 2015\projects\laboration\trpo_kursovay_project\experemental\experemental.cpp(136): warning C4018: <=: несоответствие типов со знаком и без знака
+c:\users\notebookaristokrata\documents\visual studio 2015\projects\laboration\trpo_kursovay_project\experemental\experemental.cpp(164): warning C4018: <=: несоответствие типов со знаком и без знака
+c:\users\notebookaristokrata\documents\visual studio 2015\projects\laboration\trpo_kursovay_project\experemental\experemental.cpp(210): warning C4018: <=: несоответствие типов со знаком и без знака
+c:\users\notebookaristokrata\documents\visual studio 2015\projects\laboration\trpo_kursovay_project\experemental\experemental.cpp(208): warning C4101: value: неиспользованная локальная переменная
+  Experemental.vcxproj -> C:\Users\NotebookAristokrata\Documents\Visual Studio 2015\Projects\Laboration\TRPO_Kursovay_Project\Debug\Experemental.exe
+  Experemental.vcxproj -> C:\Users\NotebookAristokrata\Documents\Visual Studio 2015\Projects\Laboration\TRPO_Kursovay_Project\Debug\Experemental.pdb (Partial PDB)

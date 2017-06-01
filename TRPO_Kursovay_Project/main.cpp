@@ -22,6 +22,7 @@ struct base
 
 int main()
 {
+	
 	//Количество слов в базе 
 
 	setlocale(LC_ALL, "Russian");

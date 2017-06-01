@@ -10,7 +10,11 @@
 #include <sstream>
 #include "RenderingCrossword.h"
 #include "Logic.h"
+#include <windows.h>
 
+using namespace std;
+
+HANDLE  hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
 struct base
 {
@@ -244,18 +248,48 @@ void InputAnswer()
 	
 }
 
-void displayQuestions(string arg[],int size)
+void displayQuestions(struct base *basic_base,int size)
 {
+	system("cls");
+	cout << endl;
 	for (int i = 0; i < 20; i++)
 		cout << "  ";
 	cout << "ВОПРОСЫ" << endl <<endl;
 	int count(0);
-	while (count != size)
+
+	cout << "По вертикале" << endl;
+
+	for(int i=0;i<size;i++)
 	{
-		cout << count+1 <<"   ";
-		cout << arg[count++] << endl;
+		
+		if (basic_base[i].orintation == 1)
+		{
+		SetConsoleTextAttribute(hConsole, 2);
+		cout << basic_base[i].number << endl;
+		cout << basic_base[i].questions << endl;
+		SetConsoleTextAttribute(hConsole, 7);
 		cout <<"--------------------------------------------------------------------------------------------"<<endl;
+		}
+		
 	}
+
+	cout << "По горизонтале" << endl;
+
+	for (int i = 0; i<size; i++)
+	{
+
+		if (basic_base[i].orintation == 0)
+		{
+			SetConsoleTextAttribute(hConsole, 5);
+			cout << basic_base[i].number << endl;
+			cout << basic_base[i].questions << endl;
+			SetConsoleTextAttribute(hConsole, 7);
+			cout << "--------------------------------------------------------------------------------------------" << endl;
+		}
+
+	}
+
+
 }
 
 
@@ -265,84 +299,59 @@ int MainManu(int size, struct base *basic_base, char board[][200])
 
 	string argument;
 
-	int number(0);
+	int number(0),m(-1);
 	int x_min(0), x_max(0), y_min(0), y_max(0);
 	SearchFieldsConclusion(board, x_min, x_max, y_min, y_max);
+	system("cls");
+	DisplayBoards(board, x_min, x_max, y_min, y_max);
+	SetConsoleTextAttribute(hConsole, 10);
+	cout << "----------------------------------------------------" << endl;
+	cout <<"                   "<<"Главное меню" << endl;
+	cout << "----------------------------------------------------" << endl;
+	SetConsoleTextAttribute(hConsole, 7);
+	cout << "Для вывода списка команд используйте команду 'Помощь' " << endl;
+	cout << "****************************************************" << endl;
 	while (true)
 	{
 		cout << endl;
-		system("cls");
-		DisplayBoards(board, x_min, x_max, y_min, y_max);
+
 		cout << "Введите плоскость 1 - Горизонталь / 0 - Вертикаль" << endl;
 		cin >> argument;
-		
+		system("cls");
+		DisplayBoards(board, x_min, x_max, y_min, y_max);
 		if (argument == "1")
 		{
 
 			cout << "Введите номер поля для ответа" << endl;
-			
-			number = vvod();
-			if (argument == "Выход")
-			{
-				system("cls");
-				continue;
-			}
-			
-
-				for (int z = 0; z < size; z++)
-				{
-					if (number == basic_base[z].number && basic_base[z].orintation == 1)
-					{
-						cout << " . " << z << "." << basic_base[z].questions << endl;
-						cout << "Введите ответ" << endl;
-						cin >> argument;
-						if (argument == basic_base[z].word)
-						{
-
-							basic_base[z].orintation = InputInCrossword(board, basic_base[z].x, basic_base[z].y, argument, basic_base[z].orintation);
-							if (VictoryCondition(basic_base, size) == -1)
-							{
-								cout << endl;
-								system("cls");
-								DisplayBoards(board, x_min, x_max, y_min, y_max);
-								cout << "Игра окончена" << endl;
-								return 0;
-							}
-
-						}
-					}
-
-				}
-				cout << "Некорректное значение поля " << endl;
-				
-
-				
-				
-			}
-		
-		if (argument == "0")
-		{
-
-			cout << "Введите номер поля для ответа" << endl;
 
 			number = vvod();
-			if (argument == "Выход")
-			{
-				system("cls");
-				continue;
-			}
+			
+			
+			
+
 			for (int z = 0; z < size; z++)
 			{
-				if (number == basic_base[z].number && basic_base[z].orintation == 0)
+				if (number == basic_base[z].number && basic_base[z].orintation == 1)
 				{
 					cout << " . " << z << "." << basic_base[z].questions << endl;
-					cout << " . " << z << "." << basic_base[z].word << endl;
-					cout << "Введите ответ" << endl;
+					cout << "Введите ответ:";
 					cin >> argument;
+					if (argument == "Подсказка")
+					{
+						cout << endl;
 
+
+						SetConsoleTextAttribute(hConsole, 13);
+						cout << basic_base[z].word << endl;;
+						SetConsoleTextAttribute(hConsole, 7);
+
+						cout << "Введите ответ:";
+						cin >> argument;
+
+					}
 					if (argument == basic_base[z].word)
 					{
-
+						m = z;
 						basic_base[z].orintation = InputInCrossword(board, basic_base[z].x, basic_base[z].y, argument, basic_base[z].orintation);
 						if (VictoryCondition(basic_base, size) == -1)
 						{
@@ -352,33 +361,161 @@ int MainManu(int size, struct base *basic_base, char board[][200])
 							cout << "Игра окончена" << endl;
 							return 0;
 						}
-
+						system("cls");
+						DisplayBoards(board, x_min, x_max, y_min, y_max);
+						
 					}
+					
 				}
 
 			}
-			cout << "Некорректное значение поля " << endl;
+			
 
 
 
 
 		}
 
+		if (argument == "0")
+		{
 
-			if (argument == "Выход")
+			cout << "Введите номер поля для ответа" << endl;
+
+			number = vvod();
+			
+			for (int z = 0; z < size; z++)
 			{
-				system("cls");
-				return 0;
+				if (number == basic_base[z].number && basic_base[z].orintation == 0)
+				{
+					cout << " . " << z << "." << basic_base[z].questions << endl;
+					cout << " . " << z << "." << basic_base[z].word << endl;
+					cout << "Введите ответ:";
+					cin >> argument;
+					if (argument == "Подсказка")
+					{
+						cout << endl;
+
+						
+							SetConsoleTextAttribute(hConsole, 13);
+							cout << basic_base[z].word << endl;;
+							SetConsoleTextAttribute(hConsole, 7);
+						
+							cout << "Введите ответ:";
+							cin >> argument;
+
+					}
+					if (argument == basic_base[z].word)
+					{
+						m = z;
+						basic_base[z].orintation = InputInCrossword(board, basic_base[z].x, basic_base[z].y, argument, basic_base[z].orintation);
+						if (VictoryCondition(basic_base, size) == -1)
+						{
+							cout << endl;
+							system("cls");
+							DisplayBoards(board, x_min, x_max, y_min, y_max);
+
+							SetConsoleTextAttribute(hConsole, 4);
+							
+							cout << "Игра окончена" << endl;
+							SetConsoleTextAttribute(hConsole, 7);
+							return 0;
+						}
+						system("cls");
+						DisplayBoards(board, x_min, x_max, y_min, y_max);
+						continue;
+
+					}
+				}
+				
+
 			}
-			if (argument == "Вопросы")
-			{
-			}
-		
-		
+			
 
 		}
+
+		if (argument == "Вопросы")
+		{
+			displayQuestions(basic_base, size);
+			system("pause");
+			system("cls");
+			DisplayBoards(board, x_min, x_max, y_min, y_max);
+		}
+		
+		if (argument == "Выход")
+		{
+			system("cls");
+			return 0;
+		}
+		if (argument == "Ответы")
+		{
+			system("cls");
+			cout << endl;
+			for (int i = 0; i < 20; i++)
+				cout << "  ";
+			cout << "ОТВЕТЫ" << endl << endl;
+			int count(0);
+
+			cout << "По вертикале" << endl;
+
+			for (int i = 0; i < size; i++)
+			{
+
+				if (basic_base[i].orintation == 1)
+				{
+					SetConsoleTextAttribute(hConsole, 2);
+					cout << basic_base[i].number << endl;
+					cout << basic_base[i].word << endl;
+					SetConsoleTextAttribute(hConsole, 7);
+					cout << "--------------------------------------------------------------------------------------------" << endl;
+				}
+
+			}
+
+			cout << "По горизонтале" << endl;
+
+			for (int i = 0; i < size; i++)
+			{
+
+				if (basic_base[i].orintation == 0)
+				{
+					SetConsoleTextAttribute(hConsole, 5);
+					cout << basic_base[i].number << endl;
+					cout << basic_base[i].word << endl;
+					SetConsoleTextAttribute(hConsole, 7);
+					cout << "--------------------------------------------------------------------------------------------" << endl;
+				}
+
+			}
+			system("pause");
+			system("cls");
+			DisplayBoards(board, x_min, x_max, y_min, y_max);
+
+
+		}
+
+
+		if (argument == "Помощь")
+		{
+			cout << "----------------------------------------------------" << endl;
+			cout << "Список доступных команд" << endl;
+			cout << "----------------------------------------------------" << endl;
+			cout << "'Выход' - для выхода из программы" << endl;
+			cout << "----------------------------------------------------" << endl;
+			cout << "'Вопросы' - вывод списка вопросов" << endl;
+			cout << "----------------------------------------------------" << endl;
+			cout << "'Ответы' - вывод списка ответов на вопросы" << endl;
+			cout << "----------------------------------------------------" << endl;
+			cout << "'Подсказка' - получит ответ на вопрос" << endl;
+			cout << "----------------------------------------------------" << endl;
+
+		}
+	}
+		
 
 }
+
+
+		
 
 
 int InputInCrossword(char board[][200], int x, int y,string word,int orintation)
@@ -423,16 +560,44 @@ void DisplayBoards(char board[][200], int x_min, int x_max, int y_min, int y_max
 	cout << endl;
 	cout << "    ";
 	for (int i = 0; i <= y_max; i++)
-		cout << " " << i;
-	cout << endl;
-	for (int i = y_min-1; i <= y_max+1; i++) 
 	{
-		if (i<10)
+		SetConsoleTextAttribute(hConsole, 9);
+		cout << " " << i;
+		SetConsoleTextAttribute(hConsole, 7);
+		
+	}
+		
+	cout << endl;
+	for (int i = 0; i <= y_max+1; i++) 
+	{
+		if (i < 10)
+		{
+			SetConsoleTextAttribute(hConsole, 9);
 			cout << "  " << i << " ";
+			SetConsoleTextAttribute(hConsole, 7);
+		}
+			
 		else
+		{
+			SetConsoleTextAttribute(hConsole, 9);
 			cout << " " << i << " ";
-		for (int j = x_min-1; j <= x_max+1; j++) {
-			printf("%c", board[i][j]);
+			SetConsoleTextAttribute(hConsole, 7);
+		}
+			
+		for (int j = x_min-1; j <= x_max+1; j++) 
+		{
+			if (isalpha((unsigned char)board[i][j]) == 1)
+			{
+				SetConsoleTextAttribute(hConsole, 9);
+				cout << board[i][j];
+				
+			}
+			else
+			{
+				SetConsoleTextAttribute(hConsole, 7);
+				printf("%c", board[i][j]);
+			}
+			
 
 		}
 		printf("\n");
@@ -448,7 +613,7 @@ int VictoryCondition(struct base *basic_base, int size)
 		if (basic_base[count].orintation == -1)
 		{
 			counter_positive++;
-			cout << counter_positive << endl;
+			
 		}
 		
 
