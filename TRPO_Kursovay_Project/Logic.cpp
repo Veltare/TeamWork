@@ -1,3 +1,4 @@
+
 #include "stdafx.h"
 #include <iostream>
 #include <clocale>
@@ -20,7 +21,7 @@ int vvod()
 			break;
 		}
 		cin.clear();
-		cout << "Неправильный ввод данных " << endl;
+		cout << "Неправильный ввод данных,Попробуйте другое значение! " << endl;
 		cin.ignore(10, '\n');
 	}
 	return p;

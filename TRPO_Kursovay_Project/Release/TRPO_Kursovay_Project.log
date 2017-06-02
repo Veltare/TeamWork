@@ -1,0 +1,18 @@
+﻿  stdafx.cpp
+  Logic.cpp
+  main.cpp
+  RenderingCrossword.cpp
+RenderingCrossword.cpp(529): warning C4018: <: несоответствие типов со знаком и без знака
+RenderingCrossword.cpp(540): warning C4018: <: несоответствие типов со знаком и без знака
+  CrosswordGenerator.cpp
+CrosswordGenerator.cpp(28): warning C4018: <: несоответствие типов со знаком и без знака
+CrosswordGenerator.cpp(30): warning C4018: <: несоответствие типов со знаком и без знака
+CrosswordGenerator.cpp(69): warning C4018: <=: несоответствие типов со знаком и без знака
+CrosswordGenerator.cpp(67): warning C4101: value: неиспользованная локальная переменная
+CrosswordGenerator.cpp(109): warning C4018: <=: несоответствие типов со знаком и без знака
+CrosswordGenerator.cpp(137): warning C4018: <=: несоответствие типов со знаком и без знака
+  Создание кода
+  All 208 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Создание кода завершено
+  TRPO_Kursovay_Project.vcxproj -> C:\Users\NotebookAristokrata\Documents\Visual Studio 2015\Projects\Laboration\TRPO_Kursovay_Project\Release\TRPO_Kursovay_Project.exe
+  TRPO_Kursovay_Project.vcxproj -> C:\Users\NotebookAristokrata\Documents\Visual Studio 2015\Projects\Laboration\TRPO_Kursovay_Project\Release\TRPO_Kursovay_Project.pdb (Full PDB)
