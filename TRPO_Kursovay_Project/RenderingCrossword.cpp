@@ -333,7 +333,7 @@ int MainManu(int size, struct base *basic_base, char board[][200])
 			{
 				if (number == basic_base[z].number && basic_base[z].orintation == 1)
 				{
-					cout << " . " << z << "." << basic_base[z].questions << endl;
+					cout << " . " << number << "." << basic_base[z].questions << endl;
 					cout << "Введите ответ:";
 					cin >> argument;
 					if (argument == "Подсказка")
@@ -387,8 +387,7 @@ int MainManu(int size, struct base *basic_base, char board[][200])
 			{
 				if (number == basic_base[z].number && basic_base[z].orintation == 0)
 				{
-					cout << " . " << z << "." << basic_base[z].questions << endl;
-					cout << " . " << z << "." << basic_base[z].word << endl;
+					cout << " . " << number << "." << basic_base[z].questions << endl;
 					cout << "Введите ответ:";
 					cin >> argument;
 					if (argument == "Подсказка")
