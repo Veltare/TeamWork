@@ -262,7 +262,7 @@ void displayQuestions(struct base *basic_base,int size)
 	for(int i=0;i<size;i++)
 	{
 		
-		if (basic_base[i].orintation == 1)
+		if (basic_base[i].orintation == 0)
 		{
 		SetConsoleTextAttribute(hConsole, 2);
 		cout << basic_base[i].number << endl;
@@ -278,7 +278,7 @@ void displayQuestions(struct base *basic_base,int size)
 	for (int i = 0; i<size; i++)
 	{
 
-		if (basic_base[i].orintation == 0)
+		if (basic_base[i].orintation == 1)
 		{
 			SetConsoleTextAttribute(hConsole, 5);
 			cout << basic_base[i].number << endl;
