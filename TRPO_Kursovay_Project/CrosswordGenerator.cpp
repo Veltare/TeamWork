@@ -38,10 +38,7 @@ string sharedLetters(string s1,string s2)
 				sharedletters.append(commonletter);
 			}
 		}
-
 	}
-
-
 	return sharedletters;
 }
 
@@ -152,12 +149,7 @@ int wordPlace(string words, char solution[][100], int y, int x, int orientation)
 			i++;
 			x++;
 		}
-
-
-
-
 	}
-
 	return PLACE_SUCCESS;
 }
 

@@ -4,10 +4,11 @@
 #include <fstream>
 #include <string>
 #include <vector>
-#include "CrosswordGenerator.h"
-#include "RenderingCrossword.h"
 #include <clocale>
 #include <windows.h>
+
+#include "CrosswordGenerator.h"
+#include "RenderingCrossword.h"
 
 using namespace std;
 struct base
@@ -35,16 +36,20 @@ int main()
 
 	string *words;
 	string *questions;
-
-	//Заполнение массива строк базой слов 
 	string line,buffer;
-	int size_list(0);
+
+	base *basicLib;
+
+	int sizeList(0);
+
+	char puzzle[100][100], solution[100][100], newBoard[100][200];
+
 	while (getline(wordList, buffer))
 	{
-		size_list++;
+		sizeList++;
 	}
-	words = new string[size_list];
-	questions = new string[size_list];
+	words = new string[sizeList];
+	questions = new string[sizeList];
 	wordList.close();
 	wordList.open("WordBase10word.txt");
 	int count = 0;
@@ -59,31 +64,32 @@ int main()
 
 
 	//Считывание базы вопросов
-	ifstream QuestionsList;
-	QuestionsList.open("Issues10quiz.txt");
+	ifstream questionsList;
+	questionsList.open("Issues10quiz.txt");
+
 	count = 0;
-	while (getline(QuestionsList, line))
+
+	while (getline(questionsList, line))
 	{
 		questions[count] = line;
 
 		count++;
 	}
-	//Запись в список слов
-	base *basic_lib;
-	basic_lib = new base[size_list];
-	for (int i = 0; i < size_list; i++)
+
+	
+	basicLib = new base[sizeList];
+	for (int i = 0; i < sizeList; i++)
 	{
-		basic_lib[i].word = words[i];
-		basic_lib[i].questions = questions[i];
+		basicLib[i].word = words[i];
+		basicLib[i].questions = questions[i];
 	}
 
-	QuestionsList.close();
-	//Перепись в массив структур
+	questionsList.close();
 
-	//Сортировка слов по длинне
-	for (int i = 0; i < size_list; i++)
+
+	for (int i = 0; i < sizeList; i++)
 	{
-		for (int comparisonIndex = i + 1; comparisonIndex < size_list; comparisonIndex++)
+		for (int comparisonIndex = i + 1; comparisonIndex < sizeList; comparisonIndex++)
 		{
 
 			if (words[i].length() < words[comparisonIndex].length())
@@ -96,29 +102,26 @@ int main()
 		}
 
 	}
-	int wordlength = words[0].length();
+	int wordLength = words[0].length();
 
-	//Расширение динамического вектора
-	char puzzle[100][100], solution[100][100], NewBoard[100][200];
 
 	initilizeBoard(puzzle, '#');
-	initilizeBoard(NewBoard, '#');
+	initilizeBoard(newBoard, '#');
 	initilizeBoard(solution, '.');
-
-
 
 	printf("\n");
 
 	int **location;
-	location = new int*[size_list];
-	for (int i = 0; i < size_list; i++)
+	location = new int*[sizeList];
+
+	for (int i = 0; i < sizeList; i++)
 		location[i] = new int[3];
 
 	
-	puzzleMaker(words, solution, size_list, location);
-	CreateBoards(NewBoard, solution, location, size_list, words, basic_lib);
+	puzzleMaker(words, solution, sizeList, location);
+	createBoards(newBoard, solution, location, sizeList, words, basicLib);
 
-	MainManu(size_list, basic_lib, NewBoard);
+	mainManu(sizeList, basicLib, newBoard);
 	
 	system("pause");
 }

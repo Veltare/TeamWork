@@ -8,7 +8,7 @@
 
 using namespace std;
 
-int vvod()
+int Input()
 {
 	int p;
 	while (true)
@@ -26,8 +26,7 @@ int vvod()
 	}
 	return p;
 }
-// Поиск полей вывода
-void SearchFieldsConclusion(char board[][200],int &x_min, int &x_max,int &y_min, int &y_max)
+void searchFieldsConclusion(char board[][200],int &x_min, int &x_max,int &y_min, int &y_max)
 {
 	int x1(0), x2(0), x_main(0),y1(1), y2(1);
 	bool switcher(1);
