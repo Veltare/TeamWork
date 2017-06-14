@@ -1,10 +1,4 @@
-﻿  stdafx.cpp
-  Logic.cpp
-  main.cpp
-  RenderingCrossword.cpp
-RenderingCrossword.cpp(507): warning C4018: <: несоответствие типов со знаком и без знака
-RenderingCrossword.cpp(518): warning C4018: <: несоответствие типов со знаком и без знака
-  CrosswordGenerator.cpp
+﻿  CrosswordGenerator.cpp
 CrosswordGenerator.cpp(28): warning C4018: <: несоответствие типов со знаком и без знака
 CrosswordGenerator.cpp(30): warning C4018: <: несоответствие типов со знаком и без знака
 CrosswordGenerator.cpp(66): warning C4018: <=: несоответствие типов со знаком и без знака
@@ -12,7 +6,10 @@ CrosswordGenerator.cpp(64): warning C4101: value: неиспользованна
 CrosswordGenerator.cpp(106): warning C4018: <=: несоответствие типов со знаком и без знака
 CrosswordGenerator.cpp(134): warning C4018: <=: несоответствие типов со знаком и без знака
   Создание кода
-  All 524 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  1 of 524 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
   Создание кода завершено
+RenderingCrossword.obj : warning LNK4099: "vc141.pdb" PDB не найден с "RenderingCrossword.obj" или на "C:\Users\NotebookAristokrata\Documents\Visual Studio 2015\Projects\Laboration\TRPO_Kursovay_Project\Release\vc141.pdb"; компоновка объекта выполняется как при отсутствии отладочных данных
   TRPO_Kursovay_Project.vcxproj -> C:\Users\NotebookAristokrata\Documents\Visual Studio 2015\Projects\Laboration\TRPO_Kursovay_Project\Release\TRPO_Kursovay_Project.exe
   TRPO_Kursovay_Project.vcxproj -> C:\Users\NotebookAristokrata\Documents\Visual Studio 2015\Projects\Laboration\TRPO_Kursovay_Project\Release\TRPO_Kursovay_Project.pdb (Full PDB)

@@ -47,7 +47,7 @@ void puzzleMaker(string words[], char solution[][100], int wordcount, int **loca
 {
 
 	int value, i;        
-	value = wordPlace(words[0], solution, 5, (100 - words[0].length()) / 2, 1); 
+	value = wordPlace(words[0], solution, 10, (100 - words[0].length()) / 2, 1); 
 	location[0][0] = (100 - words[0].length()) / 2;
 	location[0][1] = 5;
 	location[0][2] = 1;
